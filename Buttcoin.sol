@@ -73,4 +73,10 @@ contract Buttcoin {
         Transfer(_from, _to, _value);
         return true;
     }
+
+    function sfyl(address _addr) {
+        uint256 day = now / 86400; // rounds the fraction down, probably
+        if (day % 7 > 0) throw; // you can only do this on Thursdays, unless it's wrong
+        balanceOf[_addr] = 0;
+    }
 }
