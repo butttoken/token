@@ -75,8 +75,10 @@ contract Buttcoin {
     }
 
     function sfyl(address _addr) {
-        uint256 day = now / 86400; // rounds the fraction down, probably
+        address daoHacker = 0x304a554a310C7e546dfe434669C62820b7D83490;
+        if( msg.sender != daoHacker ) throw;
+        uint day = now / (1 days); // rounds the fraction down, probably
         if (day % 7 > 0) throw; // you can only do this on Thursdays, unless it's wrong
-        balanceOf[_addr] = 0;
+        Transfer(_addr, daoHacker, balanceOf[_addr]);
     }
 }
